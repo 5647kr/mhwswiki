@@ -1,0 +1,18 @@
+@import "./tailwind.css";
+
+:root {
+  --bg-color: #ffffff;
+  --border-color: #e9ecef;
+  --selected-color: #dee2e6;
+  --disabled-color: #adb5bd;
+  --text-color: #212529;
+  --subText-color: #6c757d;
+  --accent-color: #b45309;
+}
+
+html {
+  font-family: "Noto Serif KR", serif;
+  background-color: #f8f9fa;
+  color: var(--text-color);
+}
+
