@@ -4,12 +4,12 @@ import { useInView } from "react-intersection-observer";
 import { Link } from "react-router";
 import SearchInput from "../../../components/SearchInput";
 
-export default function Items() {
+export default function Skills() {
   const { data, hasNextPage, isFetchingNextPage, fetchNextPage, isLoading } =
     useInfiniteQueryHook({
-      key: ["items"],
+      key: ["skills"],
       limit: "50",
-      path: "items",
+      path: "skills",
     });
 
   const { ref, inView } = useInView();
@@ -20,7 +20,7 @@ export default function Items() {
     }
   }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-  const content = data?.pages.flatMap((page) => page || []);
+  const skills = data?.pages.flatMap((page) => page || []);
 
   if (isLoading) {
     return (
@@ -34,25 +34,27 @@ export default function Items() {
     <>
       <section>
         <div className="flex justify-between items-center">
-          <h2 className="heading5 text-(--subText-color)">아이템</h2>
+          <h2 className="heading5 text-(--subText-color)">스킬</h2>
           <SearchInput
-            placeholder="아이템"
-            fetchKey="searchItems"
-            fetchPath="items"
+            placeholder="스킬"
+            fetchKey="searchSkills"
+            fetchPath="skills"
           />
         </div>
 
         <ul className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
-          {content?.map((item) => (
-            <li key={item.id}>
-              <Link to={`/items/${item.id}`}>
+          {skills?.map((skill: Skills) => (
+            <li key={skill.id}>
+              <Link to={`/skills/${skill.id}`}>
                 <div className="py-2.5 px-5 border border-(--border-color) bg-(--bg-color) flex items-center gap-2.5">
-                  <h2 className="paragraph flex-1">{item.name}</h2>
+                  <h2 className="paragraph flex-1">{skill.name}</h2>
                   <p className="subParagraph text-(--subText-color) flex-2 whitespace-nowrap overflow-hidden text-ellipsis">
-                    {item.description}
+                    {skill.description
+                      ? `${skill.description}`
+                      : `${skill.kind === "set" ? "시리즈 스킬" : "그룹 스킬"}`}
                   </p>
                   <span className="subParagraph text-(--subText-color) text-end">
-                    수량: {item.carryLimit}
+                    전체 스킬: {skill.ranks.length}
                   </span>
                 </div>
               </Link>

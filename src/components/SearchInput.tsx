@@ -20,6 +20,8 @@ export default function SearchInput({
     path: fetchPath,
   });
 
+  console.log(data);
+
   const submitKeyword = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -28,9 +30,14 @@ export default function SearchInput({
       return;
     }
 
-    const searchItem = data.filter((item: Items) =>
-      item.name.includes(keyword)
-    );
+    let searchItem = [];
+    if (fetchPath === "charms") {
+      searchItem = data.filter((charms: Charms) =>
+        charms.ranks[0].name.includes(keyword)
+      );
+    } else {
+      searchItem = data.filter((item: Items) => item.name.includes(keyword));
+    }
 
     if (searchItem.length === 0) {
       alert(`${placeholder}을 찾을 수 없습니다.`);
@@ -38,7 +45,7 @@ export default function SearchInput({
       return;
     }
 
-    navigate(`/items/${searchItem[0].id}`);
+    navigate(`/${fetchPath}/${searchItem[0].id}`);
   };
   return (
     <>

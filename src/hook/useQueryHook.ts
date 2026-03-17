@@ -26,6 +26,8 @@ function useInfiniteQueryHook({
 
       return allPages.length * parseInt(limit);
     },
+    staleTime: 1000 * 60 * 5,
+    
   });
 }
 
