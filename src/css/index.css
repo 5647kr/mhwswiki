@@ -2,6 +2,7 @@
 
 :root {
   --bg-color: #ffffff;
+  /* --bg-color: #f8f9fa; */
   --border-color: #e9ecef;
   --selected-color: #dee2e6;
   --disabled-color: #adb5bd;
@@ -13,6 +14,6 @@
 html {
   font-family: "Noto Serif KR", serif;
   background-color: #f8f9fa;
+  /* background-color: #fff; */
   color: var(--text-color);
 }
-
