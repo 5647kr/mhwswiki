@@ -21,8 +21,9 @@ export default async function fetchData({
 
   try {
     const response = await axios.get(url.toString());
+    const data = response.data;
 
-    return response.data;
+    return data;
   } catch (error) {
     console.error(error);
   }
