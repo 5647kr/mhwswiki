@@ -53,7 +53,13 @@ interface CharmsRanks {
   level: number;
   name: string;
   rarity: number;
-  skills: SkillRank[];
+  skills: {
+    description: string;
+    id: number;
+    level: number;
+    name: string | null;
+    skill: { id: number; name: string };
+  }[];
 }
 
 interface CharmsMaterials {

@@ -17,8 +17,6 @@ export default function SkillsId() {
     path: `skills/${id}`,
   });
 
-  console.log(data);
-
   if (isLoading) {
     return (
       <>

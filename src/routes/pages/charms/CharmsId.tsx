@@ -1,43 +1,6 @@
 import { Link, useParams } from "react-router";
 import { useQueryHook } from "../../../hook/useQueryHook";
 
-interface RankType {
-  charm: { id: number };
-  description: string;
-  crafting: {
-    charmRank: { id: number };
-    craftable: number;
-    id: number;
-    materials: {
-      id: number;
-      item: {
-        carryLimit: number;
-        description: string;
-        gameId: number;
-        icon: { id: number; kind: string; colorId: number; color: string };
-        id: number;
-        name: string;
-        rarity: number;
-        recipes: string[];
-        value: number;
-      };
-      quantity: number;
-    }[];
-    zennyCost: number;
-  };
-  id: number;
-  level: number;
-  name: string;
-  rarity: number;
-  skills: {
-    description: string;
-    id: number;
-    level: number;
-    name: null;
-    skill: { id: number; name: string };
-  }[];
-}
-
 interface TotalMaterialType {
   id: number;
   name: string;
@@ -52,7 +15,6 @@ export default function CharmsId() {
     path: `charms/${id}`,
   });
 
-  console.log(data);
 
   const totalZenny: number =
     data?.ranks.reduce(
@@ -60,7 +22,6 @@ export default function CharmsId() {
       0
     ) || 0;
 
-  // 2. 총 필요 소재 합산 계산 (Strict Type)
   const totalMaterialsMap = data?.ranks.reduce(
     (acc: Record<number, TotalMaterialType>, rank: CharmsRanks) => {
       rank.crafting.materials.forEach((material) => {
@@ -105,7 +66,7 @@ export default function CharmsId() {
             <div>
               <h3 className="heading3 text-(--subText-color)">호석설명</h3>
               <ul className="mt-2.5 flex flex-col gap-5">
-                {data.ranks.map((rank: RankType) => (
+                {data.ranks.map((rank: CharmsRanks) => (
                   <li
                     key={rank.id}
                     className="flex flex-col gap-2.5 border-t border-(--border-color) first:border-t-0 pt-1.5"

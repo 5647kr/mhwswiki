@@ -20,8 +20,6 @@ export default function SearchInput({
     path: fetchPath,
   });
 
-  console.log(data);
-
   const submitKeyword = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

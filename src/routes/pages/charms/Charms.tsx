@@ -21,8 +21,7 @@ export default function Charms() {
   }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   const content = data?.pages.flatMap((page) => page || []);
-
-  console.log(content);
+  
   if (isLoading) {
     return (
       <>
